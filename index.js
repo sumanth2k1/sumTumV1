@@ -29,8 +29,8 @@ const SensorDataSchema = new mongoose.Schema({
 const SensorData = mongoose.model('SensorData', SensorDataSchema);
 
 app.post('/data', (req, res) => {
-  const { temperature, humidity, flowRate } = req.body;
-  const newSensorData = new SensorData({ temperature, humidity, flowRate, waterLevel, ph });
+  const { temperature, humidity, waterLevel, waterFlow, ph } = req.body;
+  const newSensorData = new SensorData({ temperature, humidity, waterFlow, waterLevel, ph });
   newSensorData.save()
     .then(() => res.status(200).send('Data saved successfully'))
     .catch(err => res.status(500).send('Error saving data: ' + err.message));
